@@ -10,4 +10,9 @@ public class CheckingAccount extends Account{
     public void printStatement() {
         System.out.println("Extrato da Conta Corrente");
     }
+
+    public void printInfo() {
+        printCommonInfo();
+        System.out.println("Tipo: Conta Corrente");
+    }
 }

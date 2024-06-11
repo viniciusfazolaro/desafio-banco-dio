@@ -11,4 +11,9 @@ public class SavingsAccount extends Account{
     public void printStatement() {
         System.out.println("Extrato da Conta Poupança");
     }
+
+    public void printInfo() {
+        printCommonInfo();
+        System.out.println("Tipo: Conta Poupança");
+    }
 }

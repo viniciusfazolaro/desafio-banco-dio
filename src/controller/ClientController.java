@@ -38,4 +38,15 @@ public class ClientController {
     public Client getClientByCpf(String cpf) {
         return clients.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
     }
+
+    public void listClients() {
+        Scanner sc = new Scanner(System.in);
+        if(clients.isEmpty()) {
+            System.out.println("Nenhum cliente cadastrado!");
+        } else {
+            clients.forEach(c -> c.printInfo());
+        }
+        System.out.println("Pressione ENTER para continuar...");
+        sc.nextLine();
+    }
 }

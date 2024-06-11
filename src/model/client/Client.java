@@ -9,5 +9,12 @@ public class Client {
         this.name = name;
         this.cpf = cpf;
     }
+
+    public void printInfo() {
+        System.out.println("*** Dados do Cliente ***");
+        System.out.println(String.format("Nome: %s", name));
+        System.out.println(String.format("CPF: %s", cpf));
+        System.out.println("***********************");
+    }
     
 }

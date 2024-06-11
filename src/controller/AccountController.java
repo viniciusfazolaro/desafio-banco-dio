@@ -13,13 +13,10 @@ public class AccountController{
     private static List<CheckingAccount> cAccounts = new ArrayList<>();
     private static List<SavingsAccount> sAccounts = new ArrayList<>();
     
-    public AccountController() {
-        cAccounts = new ArrayList<>();
-        sAccounts = new ArrayList<>();
-    }
+    public AccountController() { }
 
     
-    public boolean addAccount(String accountType) {
+    public void addAccount(String accountType) {
 
         Scanner sc = new Scanner(System.in);
 
@@ -33,13 +30,19 @@ public class AccountController{
             
             c = cc.getClientByCpf(cpf);
             if(c == null) System.out.println("Cliente não encontrado!");
-            else System.out.println("Cliente encontrado!");
+            
         } while(c == null);
 
         if(accountType.equals("2")) {
-            return cAccounts.add(new CheckingAccount(c));
+
+            if (cAccounts.add(new CheckingAccount(c))) System.out.println("Conta corrente cadastrada com sucesso!");
+
+                
         } else {
-            return sAccounts.add(new SavingsAccount(c));
+            if (sAccounts.add(new SavingsAccount(c))) System.out.println("Conta poupança cadastrada com sucesso!");
         }
+
+        System.out.println("Pressione ENTER para continuar...");
+        sc.nextLine();
     }
 }

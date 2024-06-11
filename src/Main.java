@@ -20,19 +20,19 @@ public class Main {
         
         do {
 
-
             Menu.printMenu(b.getName());
             option = sc.nextLine();
 
             switch (option.toLowerCase()) {
                 case "1": cc.addClient(); break; // Cadastrar Cliente
-                case "2": ac.addAccount(option); break; // Cadastrar Conta
-                case "3": break; // Listar Clientes
-                case "4": break; // Listar Contas Correntes
-                case "5": break; // Listar Contas Poupanças
-                case "6": break; // Depositar
-                case "7": break; // Sacar
-                case "8": break; // Transferir
+                case "2": ac.addAccount(option); break; // Cadastrar Conta Corrente
+                case "3": ac.addAccount(option); break; // Cadastrar Conta Poupança
+                case "4": cc.listClients(); break; // Listar Clientes
+                case "5": break; // Listar Contas Correntes
+                case "6": break; // Listar Contas Poupanças
+                case "7": break; // Depositar
+                case "8": break; // Sacar
+                case "9": break; // Transferir
                 case "sair": 
                     System.out.println("Encerrando o programa...");
                     break;

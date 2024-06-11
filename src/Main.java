@@ -21,18 +21,19 @@ public class Main {
         do {
 
             Menu.printMenu(b.getName());
-            option = sc.nextLine();
+            option = sc.nextLine().toLowerCase().trim();
 
-            switch (option.toLowerCase()) {
+            switch (option) {
                 case "1": cc.addClient(); break; // Cadastrar Cliente
                 case "2": ac.addAccount(option); break; // Cadastrar Conta Corrente
                 case "3": ac.addAccount(option); break; // Cadastrar Conta Poupança
                 case "4": cc.listClients(); break; // Listar Clientes
-                case "5": break; // Listar Contas Correntes
-                case "6": break; // Listar Contas Poupanças
-                case "7": break; // Depositar
-                case "8": break; // Sacar
+                case "5": ac.listAccounts(); break; // Listar Contas Correntes
+                case "6": ac.printgStatement(); break; // Imprimir extrato
+                case "7": ac.deposit(); break; // Depositar
+                case "8": ac.withdraw(); break; // Sacar
                 case "9": break; // Transferir
+                case "0": break; // Verificar saldo 
                 case "sair": 
                     System.out.println("Encerrando o programa...");
                     break;
@@ -43,7 +44,7 @@ public class Main {
                     break;
             }
 
-        } while (!option.toLowerCase().contains("sair"));
+        } while (!option.contains("sair"));
         
         sc.close();
     }

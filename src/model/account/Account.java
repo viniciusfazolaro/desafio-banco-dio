@@ -1,5 +1,9 @@
 package model.account;
 import model.client.Client;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Getter;
 
 public abstract class Account implements IAccount{
@@ -11,6 +15,7 @@ public abstract class Account implements IAccount{
     @Getter protected int number;
     @Getter protected double balance;
     @Getter protected Client client;
+    @Getter protected static List<String> transactions = new ArrayList<>();
 
     public Account(Client client) {
         this.agency = DEFAULT_AGENCY;
@@ -19,15 +24,26 @@ public abstract class Account implements IAccount{
     }
 
     @Override
-    public void withdraw(double amount) { balance -= amount; }
+    public void withdraw(double amount) { 
+        if (amount > balance) System.out.println("Saldo insuficiente!"); 
+        else {
+            balance -= amount; 
+            transactions.add(String.format("Saque de R$%.2f", amount));
+            System.out.println("Saque efetuado com sucesso!");
+        }
+    }
 
     @Override
-    public void deposit(double amount) { balance += amount; }
+    public void deposit(double amount) { 
+        balance += amount; 
+        transactions.add(String.format("Depósito de R$%.2f", amount));
+    }
 
     @Override
     public void transfer(double amount, Account destinationAccount) {
-        this.withdraw(amount);
+        withdraw(amount);
         destinationAccount.deposit(amount);
+        transactions.add(String.format("Transferência de R$%.2f para a conta %d", amount, destinationAccount.getNumber()));
     }
 
     protected void printCommonInfo() {

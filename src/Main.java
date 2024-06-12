@@ -29,7 +29,7 @@ public class Main {
                 case "3": ac.addAccount(option); break; // Cadastrar Conta Poupança
                 case "4": cc.listClients(); break; // Listar Clientes
                 case "5": ac.listAccounts(); break; // Listar Contas Correntes
-                case "6": ac.printgStatement(); break; // Imprimir extrato
+                case "6": ac.printStatement(); break; // Imprimir extrato
                 case "7": ac.deposit(); break; // Depositar
                 case "8": ac.withdraw(); break; // Sacar
                 case "9": break; // Transferir

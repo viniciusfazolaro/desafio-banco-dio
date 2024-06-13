@@ -44,19 +44,18 @@ public abstract class Account implements IAccount {
     public void transfer(double amount, Account destinationAccount) {
         if (amount > balance) {
             System.out.println("Saldo insuficiente para transferência!");
-        } else {
-            this.withdraw(amount);
-            destinationAccount.deposit(amount);
-            this.transactions.add(String.format("Transferência de R$%.2f para a conta %d", amount, destinationAccount.getNumber()));
-            destinationAccount.getTransactions().add(String.format("Transferência recebida de R$%.2f da conta %d", amount, this.number));
+        } else { // TODO: Implementar transferência entre contas
+            this.balance -= amount;
+            destinationAccount.balance += amount;
+            this.transactions.add(String.format("Transferência de R$%.2f para %s", amount, destinationAccount.getClient().getName()));
+            destinationAccount.transactions.add(String.format("Transferência de R$%.2f recebida de %s", amount, this.client.getName()));
+            System.out.println("Transferência realizada com sucesso!");
         }
     }
 
     public void printStatement() {
         System.out.println("*** Extrato da Conta ***");
-        for (String transaction : transactions) {
-            System.out.println(transaction);
-        }
+        for (String transaction : transactions) System.out.println(transaction);
         System.out.println("***********************");
     }
 

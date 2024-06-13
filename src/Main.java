@@ -32,8 +32,7 @@ public class Main {
                 case "6": ac.printStatement(); break; // Imprimir extrato
                 case "7": ac.deposit(); break; // Depositar
                 case "8": ac.withdraw(); break; // Sacar
-                case "9": break; // Transferir
-                case "0": break; // Verificar saldo 
+                case "9": ac.transfer(); break; // Transferir   
                 case "sair": 
                     System.out.println("Encerrando o programa...");
                     break;

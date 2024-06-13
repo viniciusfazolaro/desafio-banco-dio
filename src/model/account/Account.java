@@ -42,9 +42,8 @@ public abstract class Account implements IAccount {
 
     @Override
     public void transfer(double amount, Account destinationAccount) {
-        if (amount > balance) {
-            System.out.println("Saldo insuficiente para transferência!");
-        } else { // TODO: Implementar transferência entre contas
+        if (amount > balance) System.out.println("Saldo insuficiente para transferência!");
+        else {
             this.balance -= amount;
             destinationAccount.balance += amount;
             this.transactions.add(String.format("Transferência de R$%.2f para %s", amount, destinationAccount.getClient().getName()));

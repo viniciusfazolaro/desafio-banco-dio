@@ -7,7 +7,7 @@ import view.Menu;
 
 public class Main {
 
-    private static final String BANK_NAME = "COMTELE BANK";
+    private static final String BANK_NAME = "BANK";
     
     public static void main(String[] args) {
         

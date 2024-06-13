@@ -29,14 +29,12 @@ public class ClientController {
 
         do {
             System.out.println("Digite o CPF do cliente:");
-            do {
-                cpf = sc.nextLine();
-                cCpf = getClientByCpf(cpf);
+            cpf = sc.nextLine();
 
-                if (cCpf != null) System.out.println("CPF já cadastrado!");
-            
-            } while (cCpf != null);
-        } while(cpf.isEmpty());
+            cCpf = getClientByCpf(cpf);
+            if (cCpf != null) System.out.println("CPF já cadastrado!");
+            if (cpf.length() != 11) System.out.println("CPF deve conter 11 dígitos!");
+        } while (cCpf != null || cpf.length() != 11);
         
         clients.add(new Client(name, cpf));
         System.out.println("Cliente cadastrado com sucesso!");

@@ -10,9 +10,11 @@ public class SavingsAccount extends Account{
 
     public void printStatement() {
         System.out.println("Extrato da Conta Poupança");
-        for(String t : transactions) {
-            System.out.println(t);
+        if(transactions.isEmpty()) {
+            System.out.println("Nenhuma transação realizada!");
+            return;
         }
+        for(String t : transactions) System.out.println(t);
     }
 
     public void printInfo() {

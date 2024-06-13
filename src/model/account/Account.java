@@ -1,21 +1,20 @@
 package model.account;
-import model.client.Client;
 
+import model.client.Client;
+import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Getter;
+public abstract class Account implements IAccount {
 
-public abstract class Account implements IAccount{
-    
     private static final int DEFAULT_AGENCY = 0001;
     private static int ID = 1;
-    
+
     @Getter protected int agency;
     @Getter protected int number;
     @Getter protected double balance;
     @Getter protected Client client;
-    @Getter protected static List<String> transactions = new ArrayList<>();
+    @Getter protected List<String> transactions = new ArrayList<>();
 
     public Account(Client client) {
         this.agency = DEFAULT_AGENCY;
@@ -24,26 +23,41 @@ public abstract class Account implements IAccount{
     }
 
     @Override
-    public void withdraw(double amount) { 
-        if (amount > balance) System.out.println("Saldo insuficiente!"); 
-        else {
-            balance -= amount; 
+    public void withdraw(double amount) {
+        if (amount > balance) {
+            System.out.println("Saldo insuficiente!");
+        } else {
+            balance -= amount;
             transactions.add(String.format("Saque de R$%.2f", amount));
             System.out.println("Saque efetuado com sucesso!");
         }
     }
 
     @Override
-    public void deposit(double amount) { 
-        balance += amount; 
+    public void deposit(double amount) {
+        balance += amount;
         transactions.add(String.format("Depósito de R$%.2f", amount));
+        System.out.println("Depósito efetuado com sucesso!");
     }
 
     @Override
     public void transfer(double amount, Account destinationAccount) {
-        withdraw(amount);
-        destinationAccount.deposit(amount);
-        transactions.add(String.format("Transferência de R$%.2f para a conta %d", amount, destinationAccount.getNumber()));
+        if (amount > balance) {
+            System.out.println("Saldo insuficiente para transferência!");
+        } else {
+            this.withdraw(amount);
+            destinationAccount.deposit(amount);
+            this.transactions.add(String.format("Transferência de R$%.2f para a conta %d", amount, destinationAccount.getNumber()));
+            destinationAccount.getTransactions().add(String.format("Transferência recebida de R$%.2f da conta %d", amount, this.number));
+        }
+    }
+
+    public void printStatement() {
+        System.out.println("*** Extrato da Conta ***");
+        for (String transaction : transactions) {
+            System.out.println(transaction);
+        }
+        System.out.println("***********************");
     }
 
     protected void printCommonInfo() {
@@ -55,5 +69,4 @@ public abstract class Account implements IAccount{
         System.out.println(String.format("Saldo: %.2f", balance));
         System.out.println("**********************");
     }
-
 }

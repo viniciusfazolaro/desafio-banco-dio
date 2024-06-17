@@ -19,7 +19,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         
         do {
-
             Menu.printMenu(b.getName());
             option = sc.nextLine().toLowerCase().trim();
 
@@ -28,23 +27,21 @@ public class Main {
                 case "2": ac.addAccount(option); break; // Cadastrar Conta Corrente
                 case "3": ac.addAccount(option); break; // Cadastrar Conta Poupança
                 case "4": cc.listClients(); break; // Listar Clientes
-                case "5": ac.listAccounts(); break; // Listar Contas Correntes
+                case "5": ac.listAccounts(); break; // Listar Contas
                 case "6": ac.printStatement(); break; // Imprimir extrato
                 case "7": ac.deposit(); break; // Depositar
                 case "8": ac.withdraw(); break; // Sacar
                 case "9": ac.transfer(); break; // Transferir   
-                case "sair": 
+                case "sair": // Sair
                     System.out.println("Encerrando o programa...");
                     break;
-                default: 
+                default: // Saida padrão
                     System.out.println("Opção inválida!");
                     System.out.println("Pressione ENTER para continuar...");
                     sc.nextLine();
                     break;
             }
-
         } while (!option.contains("sair"));
-        
         sc.close();
     }
 }

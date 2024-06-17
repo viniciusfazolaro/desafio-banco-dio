@@ -4,11 +4,13 @@ import model.client.Client;
 
 public class SavingsAccount extends Account{
 
+    // Construtor
     public SavingsAccount(Client client) {
         super(client);
     }
 
-    public void printStatement() {
+    @Override
+    public void printStatement() { // método para imprimir extrato
         System.out.println("Extrato da Conta Poupança");
         if(transactions.isEmpty()) {
             System.out.println("Nenhuma transação realizada!");
